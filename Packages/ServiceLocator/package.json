@@ -1,0 +1,17 @@
+{
+  "name": "com.dizikkk.service-locator",
+  "version": "1.0.0",
+  "displayName": "Service Locator",
+  "description": "Simple service locator",
+  "author": {
+    "name": "Vitaliy Borisovec",
+    "email": "vitalik.borisovec@mail.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:dizikkk/ServiceLocator.git"
+  },
+  "dependencies": {
+    "net.tnrd.nsubstitute": "5.1.0"
+  }
+}
