@@ -1,4 +1,4 @@
-﻿namespace ServiceLocator.Runtime.Core
+﻿namespace SL.Runtime.Core
 {
     public interface IServiceLocator
     {

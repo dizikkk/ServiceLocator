@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ServiceLocator.Runtime.Core
+namespace SL.Runtime.Core
 {
     public class ServiceLocator : IServiceLocator
     {
         private static volatile IServiceLocator instance;
-        
         private readonly Dictionary<Type, object> registeredObjects = new();
+        private static readonly object @lock = new();
+
+        //private ServiceLocator() { }
         
-        private readonly object @lock = new();
-        
-        public IServiceLocator Instance
+        public static IServiceLocator Instance
         {
             get
             {
