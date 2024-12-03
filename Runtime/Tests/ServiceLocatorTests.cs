@@ -1,38 +1,51 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using ServiceLocator.Runtime.Core;
+using SL.Runtime.Core;
 
-namespace ServiceLocator.Runtime.Tests
+namespace SL.Runtime.Tests
 {
     public class ServiceLocatorTests
     {
         [Test]
+        public void Service_locator_instance_not_change()
+        {
+            //Arange
+            IServiceLocator serviceLocator = ServiceLocator.Instance;
+
+            //Act
+
+
+            //Assert
+            Assert.AreEqual(serviceLocator, ServiceLocator.Instance);
+            
+        }
+        
+        [Test]
         public void Return_the_same_service_which_added()
         {
             //Arange
-            IServiceLocator serviceLocator = new Core.ServiceLocator();
             ITestService testService = Substitute.For<ITestService>();
-            
+            IServiceLocator serviceLocator = new ServiceLocator();
+
             //Act
             serviceLocator.Add(testService);
-            
+
             //Assert
-            Assert.AreEqual(testService, serviceLocator.Get<ITestService>());
+            Assert.AreSame(serviceLocator.Get<ITestService>(), testService);
         }
         
         [Test]
         public void Add_service_twice_overwrite_existing_service_with_same_type()
         {
             //Arange
-            IServiceLocator serviceLocator = new Core.ServiceLocator();
             ITestService firstTestService = Substitute.For<ITestService>();
             ITestService secondTestService = Substitute.For<ITestService>();
             
             //Act
-            serviceLocator.Add(firstTestService);
+            ServiceLocator.Instance.Add(firstTestService);
             
             //Assert
-            Assert.AreNotEqual(secondTestService, serviceLocator.Get<ITestService>());
+            Assert.AreNotEqual(secondTestService, ServiceLocator.Instance.Get<ITestService>());
         }
     }
 }
